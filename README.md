@@ -7,7 +7,7 @@ Reference:
 
 The forest algorithm is based on: Daskalakis, C., Mossel, E. and Roch, S., 2011. Phylogenies without branch bounds: Contracting the short, pruning the deep. SIAM Journal on Discrete Mathematics, 25(2), pp.872-893.
 
-Input: alignment file, true tree (Newick) for comparison, parameters m, M, and $\tau$. See main() function to make changes.
+Input: alignment file, true tree (Newick) for comparison, parameters m, M, and $\tau$. Edit main() function to make changes.
 
 Output: summary tsv files, filename pattern (per replicate):
 
