@@ -7,17 +7,17 @@ Reference:
 
 The forest algorithm is based on: Daskalakis, C., Mossel, E. and Roch, S., 2011. Phylogenies without branch bounds: Contracting the short, pruning the deep. SIAM Journal on Discrete Mathematics, 25(2), pp.872-893.
 
-Input: alignment file, true tree (Newick) for comparison, parameters m, M, and $\tau$.
+Input: alignment file, true tree (Newick) for comparison, parameters m, M, and $\tau$. See main() function to make changes.
 
 Output: summary tsv files, filename pattern (per replicate):
 
 grid_summary_ntips{ntips}_{replicate}_k{sequence_length}_sorted.tsv
 
-Example command:
+Example command (pass ntips and sequence length, change m, M, $\tau$ in main()):
 ```
 python forest_algorithm.py --n 128 --k 500
 ```
-output: grid_summary_ntips128_1_k500_sorted.tsv and grid_summary_ntips128_2_k500_sorted.tsv files.
+Output: grid_summary_ntips128_1_k500_sorted.tsv and grid_summary_ntips128_2_k500_sorted.tsv files.
 
 
 
