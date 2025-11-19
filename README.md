@@ -1,19 +1,29 @@
 # distphylo
 O# (O4745) Inferring trees from limited data
 
-Code to reconstruct a full phylogenetic tree or forest of disjoint trees. 
-Input: estimated distance matrix (currecntly we generate alignments using IQTree under JC model and then estimate the distance matrix from alignments), parameters m (forest size), M (related to branch length and depth of the tree), and tau (related to branch lengths).
-We compare results of reconstruction with NJ (either usual RF distance or induced RF distance for the forest).
+Reconstruct a complete phylogenetic tree—or a forest of disjoint trees—from a multiple-sequence alignment.
+
+Reference:
+The forest algorithm is based on: Daskalakis, C., Mossel, E. and Roch, S., 2011. Phylogenies without branch bounds: Contracting the short, pruning the deep. SIAM Journal on Discrete Mathematics, 25(2), pp.872-893.
+
+Input: alignment file, true tree (Newick) for comparison, parameters m, M, and \tau.
+Summary TSV files. For example: grid_summary_ntips128_1_k500_sorted.tsv.
+
+Filename pattern (per replicate):
+grid_summary_ntips{ntips}_{replicate}_k{sequence_length}_sorted.tsv
+
+Example command: tsv summary files for each replicate, formatted as f'grid_summary_ntips{ntips}_{replicate}_k{sequence\_length}_sorted.tsv'
+```
+python forest_algorithm.py --n 128 --k 500
+```
+output: grid_summary_ntips128_1_k500_sorted.tsv and grid_summary_ntips128_2_k500_sorted.tsv files.
 
 
-Description: TBA.
 
 © 2024. Triad National Security, LLC. All rights reserved.
 This program was produced under U.S. Government contract 89233218CNA000001 for Los Alamos National Laboratory (LANL), which is operated by Triad National Security, LLC for the U.S. Department of Energy/National Nuclear Security Administration. All rights in the program are reserved by Triad National Security, LLC, and the U.S. Department of Energy/National Nuclear Security Administration. The Government is granted for itself and others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide license in this material to reproduce, prepare. derivative works, distribute copies to the public, perform publicly and display publicly, and to permit others to do so.
 
-
-
- This program is Open-Source under the BSD-3 License.
+This program is Open-Source under the BSD-3 License.
  
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  
