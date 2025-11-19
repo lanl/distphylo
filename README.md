@@ -1,7 +1,7 @@
 # distphylo
 O# (O4745) Inferring trees from limited data
 
-Reconstruct a complete phylogenetic tree—or a forest of disjoint trees—from a multiple-sequence alignment.
+Reconstruct a complete phylogenetic tree or a forest of disjoint trees from a multiple-sequence alignment.
 
 Reference:
 
