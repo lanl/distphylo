@@ -4,15 +4,16 @@ O# (O4745) Inferring trees from limited data
 Reconstruct a complete phylogenetic tree—or a forest of disjoint trees—from a multiple-sequence alignment.
 
 Reference:
+
 The forest algorithm is based on: Daskalakis, C., Mossel, E. and Roch, S., 2011. Phylogenies without branch bounds: Contracting the short, pruning the deep. SIAM Journal on Discrete Mathematics, 25(2), pp.872-893.
 
 Input: alignment file, true tree (Newick) for comparison, parameters m, M, and \tau.
-Summary TSV files. For example: grid_summary_ntips128_1_k500_sorted.tsv.
 
-Filename pattern (per replicate):
+Output: summary tsv files, filename pattern (per replicate):
+
 grid_summary_ntips{ntips}_{replicate}_k{sequence_length}_sorted.tsv
 
-Example command: tsv summary files for each replicate, formatted as f'grid_summary_ntips{ntips}_{replicate}_k{sequence\_length}_sorted.tsv'
+Example command:
 ```
 python forest_algorithm.py --n 128 --k 500
 ```
