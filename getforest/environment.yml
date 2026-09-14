@@ -1,0 +1,8 @@
+name: prune-deep-edge
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy>=1.26,<3
+  - networkx>=3.2,<4
+  - biopython>=1.83,<2

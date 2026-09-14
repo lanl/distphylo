@@ -1,0 +1,95 @@
+Prune-Deep Forest alignment-only grid search
+input	/Users/akim/Documents/projects/phylogenetics/distphylo/getforest/alignments/aln_20tips_k500.fa
+taxa	20
+sequence_length	500
+distance_model	JC69
+grid_mode	NJ-informed automatic
+NJ_inferred_internal_branches	0.003,0.003,0.013,0.017,0.019,0.020,0.020,0.022,0.027,0.032,0.038,0.039,0.039,0.041,0.042,0.050,0.067
+tau	median(NJ internal branches)/4=0.007; multipliers=[0.250,0.500,1.000,1.500,2.000]
+tau_values_initial	0.002,0.003,0.007,0.010,0.014
+tau_values_final	0.002,0.003,0.007,0.010,0.014
+tau_refinement_rounds_used	0
+m	NJ chord depth=0.136; multipliers=[0.500,1.000,1.500]
+NJ_split_chord_depths	0.063,0.065,0.065,0.067,0.069,0.078,0.080,0.100,0.110,0.110,0.110,0.110,0.110,0.119,0.126,0.126,0.136
+m_values	0.068,0.136,0.203
+M	M_base=2*m+3*tau; multipliers=[1.050, 1.250, 1.500]
+grid_points_initial_raw	45
+grid_points_initial_discarded	0
+grid_points_initial_tested	45
+nj_tree	((0:0.015,(2:0.041,1:0.041)Inner16:0.013)Inner17:0.003,((8:0.040,(7:0.020,6:0.019)Inner6:0.042)Inner11:0.032,(4:0.027,(5:0.067,3:0.031)Inner12:0.003)Inner13:0.038)Inner14:0.027,(((19:0.028,(18:0.035,17:0.037)Inner1:0.020)Inner3:0.067,((16:0.037,15:0.004)Inner4:0.039,14:0.021)Inner8:0.022)Inner10:0.041,(13:0.033,(((12:0.042,11:0.041)Inner2:0.017,10:0.022)Inner5:0.039,9:0.008)Inner7:0.019)Inner9:0.050)Inner15:0.020)Inner18:0.000;
+theorem_condition	M>3*tau; m>3*tau; M>2*m+3*tau
+selection	maximum total compatible nontrivial split_count; forest split_count is summed across components; tie -> fewer components, then earlier grid point
+grid_points_raw_total	45
+grid_points_discarded_by_theorem_filter	0
+grid_points_tested	45
+elapsed_seconds	0.126
+
+grid_index	M	m	tau	split_compatible	num_components	component_sizes	total_split_count	component_split_counts
+1	0.148	0.068	0.002	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2	0.176	0.068	0.002	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+3	0.211	0.068	0.002	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+4	0.290	0.136	0.002	0	2	17,3	0	
+5	0.345	0.136	0.002	0	2	17,3	0	
+6	0.414	0.136	0.002	0	2	17,3	0	
+7	0.432	0.203	0.002	0	1	20	0	
+8	0.515	0.203	0.002	0	1	20	0	
+9	0.618	0.203	0.002	0	1	20	0	
+10	0.153	0.068	0.003	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+11	0.182	0.068	0.003	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+12	0.219	0.068	0.003	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+13	0.295	0.136	0.003	1	2	17,3	12	12,0
+14	0.352	0.136	0.003	1	2	17,3	12	12,0
+15	0.422	0.136	0.003	1	2	17,3	12	12,0
+16	0.438	0.203	0.003	0	1	20	0	
+17	0.521	0.203	0.003	0	1	20	0	
+18	0.625	0.203	0.003	0	1	20	0	
+19	0.164	0.068	0.007	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+20	0.195	0.068	0.007	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+21	0.234	0.068	0.007	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+22	0.306	0.136	0.007	1	2	17,3	11	11,0
+23	0.364	0.136	0.007	1	2	17,3	11	11,0
+24	0.437	0.136	0.007	1	2	17,3	11	11,0
+25	0.448	0.203	0.007	1	1	20	15	15
+26	0.534	0.203	0.007	1	1	20	15	15
+27	0.640	0.203	0.007	1	1	20	15	15
+28	0.174	0.068	0.010	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+29	0.208	0.068	0.010	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+30	0.249	0.068	0.010	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+31	0.317	0.136	0.010	1	2	17,3	9	9,0
+32	0.377	0.136	0.010	1	2	17,3	9	9,0
+33	0.452	0.136	0.010	1	2	17,3	9	9,0
+34	0.459	0.203	0.010	1	1	20	13	13
+35	0.546	0.203	0.010	1	1	20	13	13
+36	0.656	0.203	0.010	1	1	20	13	13
+37	0.185	0.068	0.014	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+38	0.220	0.068	0.014	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+39	0.264	0.068	0.014	1	14	2,1,2,1,2,1,3,1,1,1,2,1,1,1	0	0,0,0,0,0,0,0,0,0,0,0,0,0,0
+40	0.327	0.136	0.014	1	2	17,3	7	7,0
+41	0.390	0.136	0.014	1	2	17,3	7	7,0
+42	0.468	0.136	0.014	1	2	17,3	7	7,0
+43	0.470	0.203	0.014	1	1	20	8	8
+44	0.559	0.203	0.014	1	1	20	8	8
+45	0.671	0.203	0.014	1	1	20	8	8
+
+SELECTED
+M	0.448
+m	0.203
+tau	0.007
+num_components	1
+component_sizes	20
+total_split_count	15
+component_split_counts	15
+newick_file	/Users/akim/Documents/projects/phylogenetics/distphylo/getforest/prune_deep_output_20tips_k500/main_M0.448335m0.203313tau0.00678633.nwk
+selected_result_type	single_tree
+
+SECONDARY_MOST_RESOLVED_FOREST
+note	Primary answer is a single tree; this is the most-resolved compatible forest found.
+resolution_note	Forest is less resolved than selected single tree by 3 nontrivial split(s).
+M	0.295
+m	0.136
+tau	0.003
+num_components	2
+component_sizes	17,3
+total_split_count	12
+component_split_counts	12,0
+newick_file	/Users/akim/Documents/projects/phylogenetics/distphylo/getforest/prune_deep_output_20tips_k500/forest_less_preferred_M0.295327m0.135542tau0.00339317.nwk
