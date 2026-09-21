@@ -5,7 +5,7 @@ This branch repository provides two user-facing implementations of the phylogene
 1. **`prune_deep_forest.py`** — starts from an aligned nucleotide FASTA file and estimates pairwise distances with JC69.
 2. **`prune_deep_forest_distance.py`** — starts from a given pairwise distance matrix and therefore does not assume a substitution model inside the program.
 
-Both scripts infer a Neighbor Joining (NJ) tree to obtain scales for the automatic parameter search, run Prune-Deep over theorem-valid $(M,m,\tau)$ combinations, and write the most-resolved split-compatible tree or forest. The user can also provide their own parameter values to avoid NJ based values.
+Both scripts infer a Neighbor Joining (NJ) tree to obtain scales for the automatic parameter search (not in paper but rather our heuristic), run Prune-Deep over theorem-valid $(M,m,\tau)$ combinations, and write the most-resolved split-compatible tree or forest. The user can also provide their own parameter values to avoid NJ based values.
 
 ---
 
@@ -220,14 +220,7 @@ NJ itself does not require JC69; it operates on the distance matrix it receives.
 
 ### 2. Tau search scale
 
-Let the positive internal branch lengths of the NJ tree be
-
-$$
-b_1,\ldots,b_r.
-$$
-
-The automatic center is
-
+Let the positive internal branch lengths of the NJ tree be $b_1,\ldots,b_r$. The automatic center is
 $$
 \tau_0=\frac{\operatorname{median}(b_1,\ldots,b_r)}{4}.
 $$
@@ -244,23 +237,7 @@ If the NJ tree has no positive internal branch, the implementation uses one quar
 
 ### 3. NJ chord-depth proxy and m
 
-For every unique nontrivial split $A_e \mid B_e$ induced by an NJ internal edge, calculate
-
-$$
-c_e = \min_{i \in A_e,\; j \in B_e} \hat{d}(i,j).
-$$
-
-The NJ chord-depth proxy is
-
-$$
-\widehat{\Delta}_c^{NJ} = \max_e c_e.
-$$
-
-The automatic `m` grid is
-
-$$
-m = \widehat{\Delta}_c^{NJ} \times [0.5,\; 1.0,\; 1.5].
-$$
+For every unique nontrivial split $A_e \mid B_e$ induced by an NJ internal edge, calculate $c_e = \min_{i \in A_e,\; j \in B_e} \hat{d}(i,j)$. The NJ chord-depth proxy is $\widehat{\Delta}_c^{NJ} = \max_e c_e$. The automatic `m` grid is $m = \widehat{\Delta}_c^{NJ} \times [0.5,\; 1.0,\; 1.5]$.
 
 This uses the same max-min chord-depth construction as the simulation benchmark, but replaces the unavailable true tree and true tree metric with the NJ topology and the observed/supplied distance matrix.
 
