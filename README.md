@@ -148,7 +148,7 @@ D	0.50	0.51	0.12	0
 
 ```bash
 python prune_deep_forest_distance.py distance_matrix_8tips.tsv \
-    --outdir prune_deep_output_8tips
+    --outdir prune_deep_output_distance_8tips
 ```
 
 For the provided 20-tip test matrix:
@@ -170,7 +170,7 @@ Disable refinement:
 
 ```bash
 python prune_deep_forest_distance.py distance_matrix_20tips.tsv \
-    --outdir prune_deep_output_20tips \
+    --outdir prune_deep_output_20tips_notau \
     --tau-refine-rounds 0
 ```
 
@@ -178,7 +178,7 @@ python prune_deep_forest_distance.py distance_matrix_20tips.tsv \
 
 ```bash
 python prune_deep_forest_distance.py distance_matrix_20tips.tsv \
-    --outdir prune_deep_output_20tips_custom \
+    --outdir prune_deep_output_distance_20tips_custom \
     --M "[1.5,2.0]" \
     --m "[0.2,0.4,0.6]" \
     --tau "[0.005,0.02]"
@@ -203,16 +203,7 @@ NJ itself does not require JC69; it operates on the distance matrix it receives.
 
 ### 2. Tau search scale
 
-Let the positive internal branch lengths of the NJ tree be $b_1,\ldots,b_r$. The automatic center is
-$$
-\tau_0=\frac{\operatorname{median}(b_1,\ldots,b_r)}{4}.
-$$
-
-The initial values are
-
-$$
-\tau=\tau_0\,[0.25,\;0.5,\;1,\;1.5,\;2].
-$$
+Let the positive internal branch lengths of the NJ tree be $b_1,\ldots,b_r$. The automatic center is $\tau_0=\frac{\operatorname{median}(b_1,\ldots,b_r)}{4}.$ The initial values are $\tau=\tau_0\,[0.25,0.5,1,1.5,2].$
 
 If the NJ tree has no positive internal branch, the implementation uses one quarter of the 10th percentile of positive pairwise distances as a fallback scale.
 
