@@ -25,8 +25,8 @@ Output: grid_summary_ntips128_1_k500_sorted.tsv and grid_summary_ntips128_2_k500
 
 This branch repository provides two user-facing implementations of the phylogenetic forest reconstruction workflow:
 
-1. **`prune_deep_forest.py`** — starts from an aligned nucleotide FASTA file and estimates pairwise distances with **JC69**.
-2. **`prune_deep_forest_distance.py`** — starts from a **precomputed pairwise distance matrix** and therefore does not assume a substitution model inside the program.
+1. **`prune_deep_forest.py`** — starts from an aligned nucleotide FASTA file and estimates pairwise distances with JC69.
+2. **`prune_deep_forest_distance.py`** — starts from a given pairwise distance matrix and therefore does not assume a substitution model inside the program.
 
 Both scripts infer a Neighbor Joining (NJ) tree to obtain scales for the automatic parameter search, run Prune-Deep over theorem-valid $(M,m,\tau)$ combinations, and write the most-resolved split-compatible tree or forest. The user can also provide their own parameter values to avoid NJ based values.
 
@@ -82,7 +82,7 @@ precomputed pairwise distance matrix
     -> selected Newick tree/forest + grid-search log
 ```
 
-This version does **not** estimate distances from sequences and does **not** assume any substitution model internally. Any evolutionary model or distance-estimation method used to create the matrix is external to this program.
+This option does not estimate distances from sequences and does not assume any substitution model internally. Any evolutionary model or distance-estimation method used to create the matrix is external to this program.
 
 ---
 
