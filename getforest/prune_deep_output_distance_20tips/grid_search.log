@@ -1,0 +1,104 @@
+Prune-Deep Forest distance-matrix grid search
+input_distance_matrix	/Users/akim/Documents/projects/phylogenetics/distphylo/getforest/distance_matrix_20tips.tsv
+taxa	20
+distance_source	user_supplied_precomputed_matrix
+distance_model	unspecified_by_program
+grid_mode	NJ-informed automatic
+NJ_inferred_internal_branches	0.080,0.080,0.080,0.080,0.080,0.085,0.085,0.085,0.085,0.085,0.120,0.125,0.130,0.135,0.180,0.190,0.220
+tau	median(NJ internal branches)/4=0.021; multipliers=[0.250,0.500,1.000,1.500,2.000]
+tau_values_initial	0.005,0.011,0.021,0.032,0.043
+tau_values_final	0.003,0.005,0.011,0.021,0.032,0.043
+tau_refinement_rounds_used	1
+m	NJ chord depth=0.765; multipliers=[0.500,1.000,1.500]
+NJ_split_chord_depths	0.240,0.240,0.240,0.240,0.240,0.240,0.240,0.240,0.240,0.240,0.480,0.480,0.490,0.490,0.750,0.750,0.765
+m_values	0.383,0.765,1.147
+M	M_base=2*m+3*tau; multipliers=[1.050, 1.250, 1.500]
+grid_points_initial_raw	45
+grid_points_initial_discarded	0
+grid_points_initial_tested	45
+nj_tree	(((((T20:0.050,T19:0.040)Inner1:0.085,(T18:0.045,T17:0.035)Inner2:0.080)Inner3:0.220,(((T16:0.050,T15:0.040)Inner4:0.085,(T14:0.045,T13:0.035)Inner5:0.080)Inner8:0.135,((T12:0.050,T11:0.040)Inner6:0.085,(T10:0.045,T09:0.035)Inner7:0.080)Inner9:0.125)Inner10:0.190)Inner11:0.180,((T08:0.050,T07:0.040)Inner12:0.085,(T06:0.045,T05:0.035)Inner13:0.080)Inner14:0.130)Inner15:0.120,(T01:0.035,T02:0.045)Inner17:0.080,(T04:0.050,T03:0.040)Inner16:0.085)Inner18:0.000;
+theorem_condition	M>3*tau; m>3*tau; M>2*m+3*tau
+selection	maximum total compatible nontrivial split_count; forest split_count is summed across components; tie -> fewer components, then earlier grid point
+grid_points_raw_total	54
+grid_points_discarded_by_theorem_filter	0
+grid_points_tested	54
+elapsed_seconds	0.170
+
+grid_index	M	m	tau	split_compatible	num_components	component_sizes	total_split_count	component_split_counts
+1	0.820	0.383	0.005	1	5	4,4,4,4,4	5	1,1,1,1,1
+2	0.976	0.383	0.005	1	5	4,4,4,4,4	5	1,1,1,1,1
+3	1.171	0.383	0.005	1	5	4,4,4,4,4	5	1,1,1,1,1
+4	1.623	0.765	0.005	1	2	12,8	14	9,5
+5	1.932	0.765	0.005	1	2	12,8	14	9,5
+6	2.319	0.765	0.005	1	2	12,8	14	9,5
+7	2.426	1.147	0.005	1	1	20	17	17
+8	2.889	1.147	0.005	1	1	20	17	17
+9	3.466	1.147	0.005	1	1	20	17	17
+10	0.837	0.383	0.011	1	5	4,4,4,4,4	5	1,1,1,1,1
+11	0.996	0.383	0.011	1	5	4,4,4,4,4	5	1,1,1,1,1
+12	1.195	0.383	0.011	1	5	4,4,4,4,4	5	1,1,1,1,1
+13	1.640	0.765	0.011	1	2	12,8	14	9,5
+14	1.952	0.765	0.011	1	2	12,8	14	9,5
+15	2.343	0.765	0.011	1	2	12,8	14	9,5
+16	2.443	1.147	0.011	1	1	20	17	17
+17	2.909	1.147	0.011	1	1	20	17	17
+18	3.490	1.147	0.011	1	1	20	17	17
+19	0.870	0.383	0.021	1	5	4,4,4,4,4	5	1,1,1,1,1
+20	1.036	0.383	0.021	1	5	4,4,4,4,4	5	1,1,1,1,1
+21	1.243	0.383	0.021	1	5	4,4,4,4,4	5	1,1,1,1,1
+22	1.673	0.765	0.021	1	2	12,8	14	9,5
+23	1.992	0.765	0.021	1	2	12,8	14	9,5
+24	2.391	0.765	0.021	1	2	12,8	14	9,5
+25	2.477	1.147	0.021	1	1	20	17	17
+26	2.948	1.147	0.021	1	1	20	17	17
+27	3.538	1.147	0.021	1	1	20	17	17
+28	0.904	0.383	0.032	1	5	4,4,4,4,4	5	1,1,1,1,1
+29	1.076	0.383	0.032	1	5	4,4,4,4,4	5	1,1,1,1,1
+30	1.291	0.383	0.032	1	5	4,4,4,4,4	5	1,1,1,1,1
+31	1.707	0.765	0.032	1	2	12,8	14	9,5
+32	2.032	0.765	0.032	1	2	12,8	14	9,5
+33	2.438	0.765	0.032	1	2	12,8	14	9,5
+34	2.510	1.147	0.032	1	1	20	17	17
+35	2.988	1.147	0.032	1	1	20	17	17
+36	3.586	1.147	0.032	1	1	20	17	17
+37	0.937	0.383	0.043	1	5	4,4,4,4,4	5	1,1,1,1,1
+38	1.116	0.383	0.043	1	5	4,4,4,4,4	5	1,1,1,1,1
+39	1.339	0.383	0.043	1	5	4,4,4,4,4	5	1,1,1,1,1
+40	1.740	0.765	0.043	1	2	12,8	9	6,3
+41	2.072	0.765	0.043	1	2	12,8	9	6,3
+42	2.486	0.765	0.043	1	2	12,8	9	6,3
+43	2.544	1.147	0.043	1	1	20	11	11
+44	3.028	1.147	0.043	1	1	20	11	11
+45	3.634	1.147	0.043	1	1	20	11	11
+46	0.812	0.383	0.003	1	5	4,4,4,4,4	5	1,1,1,1,1
+47	0.966	0.383	0.003	1	5	4,4,4,4,4	5	1,1,1,1,1
+48	1.159	0.383	0.003	1	5	4,4,4,4,4	5	1,1,1,1,1
+49	1.615	0.765	0.003	1	2	12,8	14	9,5
+50	1.922	0.765	0.003	1	2	12,8	14	9,5
+51	2.307	0.765	0.003	1	2	12,8	14	9,5
+52	2.418	1.147	0.003	1	1	20	17	17
+53	2.879	1.147	0.003	1	1	20	17	17
+54	3.454	1.147	0.003	1	1	20	17	17
+
+SELECTED
+M	2.426
+m	1.147
+tau	0.005
+num_components	1
+component_sizes	20
+total_split_count	17
+component_split_counts	17
+newick_file	/Users/akim/Documents/projects/phylogenetics/distphylo/getforest/prune_deep_output_distance_20tips/main_M2.42648m1.1475tau0.0053125.nwk
+selected_result_type	single_tree
+
+SECONDARY_MOST_RESOLVED_FOREST
+note	Primary answer is a single tree; this is the most-resolved compatible forest found.
+resolution_note	Forest is less resolved than selected single tree by 3 nontrivial split(s).
+M	1.623
+m	0.765
+tau	0.005
+num_components	2
+component_sizes	12,8
+total_split_count	14
+component_split_counts	9,5
+newick_file	/Users/akim/Documents/projects/phylogenetics/distphylo/getforest/prune_deep_output_distance_20tips/forest_less_preferred_M1.62323m0.765tau0.0053125.nwk
