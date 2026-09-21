@@ -21,14 +21,14 @@ python forest_algorithm.py --n 128 --k 500
 ```
 Output: grid_summary_ntips128_1_k500_sorted.tsv and grid_summary_ntips128_2_k500_sorted.tsv files.
 
-# GETFOREST Branch
+## GETFOREST Branch
 
-This branch repository provides two user-facing implementations of the Prune-Deep phylogenetic forest reconstruction workflow:
+This branch repository provides two user-facing implementations of the phylogenetic forest reconstruction workflow:
 
 1. **`prune_deep_forest.py`** — starts from an aligned nucleotide FASTA file and estimates pairwise distances with **JC69**.
 2. **`prune_deep_forest_distance.py`** — starts from a **precomputed pairwise distance matrix** and therefore does not assume a substitution model inside the program.
 
-Both scripts infer a Neighbor Joining (NJ) tree to obtain scales for the automatic parameter search, run Prune-Deep over theorem-valid \((M,m,\tau)\) combinations, and write the most-resolved split-compatible tree or forest. The user can also provide their own parameter values to avoid NJ based values.
+Both scripts infer a Neighbor Joining (NJ) tree to obtain scales for the automatic parameter search, run Prune-Deep over theorem-valid $(M,m,\tau)$ combinations, and write the most-resolved split-compatible tree or forest. The user can also provide their own parameter values to avoid NJ based values.
 
 ---
 
@@ -89,7 +89,7 @@ This version does **not** estimate distances from sequences and does **not** ass
 
 ---
 
-# 1. Alignment-input version: `prune_deep_forest.py`
+## 1. Alignment-input version: `prune_deep_forest.py`
 
 ## Input
 
@@ -99,16 +99,7 @@ One aligned nucleotide FASTA file with:
 - equal sequence lengths;
 - unique sequence IDs.
 
-The current implementation calculates JC69 distances as
-
-\[
-\hat d_{ij}=-\frac{3}{4}\log\left(1-\frac{4}{3}p_{ij}\right),
-\]
-
-where \(p_{ij}\) is the fraction of aligned characters that differ between taxa \(i\) and \(j\).
-
-If \(p_{ij}\ge 0.75\), the JC69 distance is infinite and the program stops with an error.
-
+The current implementation calculates JC69 distances.
 **Current implementation note:** every unequal aligned character contributes to the mismatch count. Gaps and ambiguous nucleotide symbols are not currently pairwise-deleted or handled with a separate missing-data rule.
 
 ## Basic automatic-grid example
@@ -166,7 +157,7 @@ The Cartesian product of the supplied values is formed, but only combinations sa
 
 ---
 
-# 2. Distance-matrix version: `prune_deep_forest_distance.py`
+## 2. Distance-matrix version: `prune_deep_forest_distance.py`
 
 ## Input
 
@@ -241,7 +232,7 @@ As in the alignment-input version, combinations that do not satisfy the strict t
 
 ---
 
-# Automatic parameter search
+## Automatic parameter search
 
 The automatic search is the same in both scripts after a pairwise distance matrix has been obtained.
 
@@ -258,73 +249,73 @@ NJ itself does not require JC69; it operates on the distance matrix it receives.
 
 Let the positive internal branch lengths of the NJ tree be
 
-\[
+$$
 b_1,\ldots,b_r.
-\]
+$$
 
 The automatic center is
 
-\[
+$$
 \tau_0=\frac{\operatorname{median}(b_1,\ldots,b_r)}{4}.
-\]
+$$
 
 The initial values are
 
-\[
+$$
 \tau=\tau_0\,[0.25,\;0.5,\;1,\;1.5,\;2].
-\]
+$$
 
 If the NJ tree has no positive internal branch, the implementation uses one quarter of the 10th percentile of positive pairwise distances as a fallback scale.
 
-**Important:** this is an automatic-search heuristic. The theorem treats \(\tau\) as a distance-distortion/error parameter; the NJ-based formula above is not itself a theorem-derived estimator of that error bound.
+**Important:** this is an automatic-search heuristic. The theorem treats $\tau$ as a distance-distortion/error parameter; the NJ-based formula above is not itself a theorem-derived estimator of that error bound.
 
 ## 3. NJ chord-depth proxy and m
 
-For every unique nontrivial split \(A_e\mid B_e\) induced by an NJ internal edge, calculate
+For every unique nontrivial split $A_e \mid B_e$ induced by an NJ internal edge, calculate
 
-\[
-c_e=\min_{i\in A_e,\;j\in B_e}\hat d(i,j).
-\]
+$$
+c_e = \min_{i \in A_e,\; j \in B_e} \hat{d}(i,j).
+$$
 
 The NJ chord-depth proxy is
 
-\[
-\widehat{\Delta}_c^{NJ}=\max_e c_e.
-\]
+$$
+\widehat{\Delta}_c^{NJ} = \max_e c_e.
+$$
 
 The automatic `m` grid is
 
-\[
-m=\widehat{\Delta}_c^{NJ}[0.5,\;1.0,\;1.5].
-\]
+$$
+m = \widehat{\Delta}_c^{NJ} \times [0.5,\; 1.0,\; 1.5].
+$$
 
 This uses the same max-min chord-depth construction as the simulation benchmark, but replaces the unavailable true tree and true tree metric with the NJ topology and the observed/supplied distance matrix.
 
 ## 4. M values
 
-For every \((m,\tau)\), define the theorem boundary
+For every $(m,\tau)$, define the theorem boundary
 
-\[
+$$
 M_{\text{base}}=2m+3\tau.
-\]
+$$
 
 The automatic candidates are
 
-\[
+$$
 M=M_{\text{base}}[1.05,\;1.25,\;1.50].
-\]
+$$
 
 All proposed triples are still checked against the full strict theorem conditions below.
 
 ---
 
-# Theorem-1 parameter filtering
+## Theorem-1 parameter filtering
 
 Only parameter combinations satisfying
 
-\[
+$$
 M>3\tau,\qquad m>3\tau,\qquad M>2m+3\tau
-\]
+$$
 
 are evaluated by Prune-Deep.
 
@@ -337,21 +328,21 @@ Therefore a custom parameter combination can be supplied on the command line but
 
 ---
 
-# Adaptive lower-tau refinement
+## Adaptive lower-tau refinement
 
 Adaptive tau refinement is used only with the automatic grid.
 
 After the initial grid is evaluated:
 
 1. select the current best split-compatible result;
-2. check whether its \(\tau\) is the smallest currently tested value;
+2. check whether its $\tau$ is the smallest currently tested value;
 3. if so, add
 
-\[
+$$
 \tau_{\text{new}}=\frac{\tau_{\min}}{2};
-\]
+$$
 
-4. generate theorem-valid \((M,m,\tau_{\text{new}})\) combinations;
+4. generate theorem-valid $(M,m,\tau_{\text{new}})$ combinations;
 5. evaluate them and reselect the best result;
 6. continue until the winner is no longer at the lower tau boundary or the configured `--tau-refine-rounds` limit is reached.
 
@@ -365,15 +356,15 @@ Custom-grid runs do not automatically add smaller tau values.
 
 ---
 
-# Reconstruction and selection
+## Reconstruction and selection
 
-For each theorem-valid \((M,m,\tau)\) point, the program:
+For each theorem-valid $(M,m,\tau)$ point, the program:
 
 1. constructs the `m`-clustering graph using an edge when
 
-   \[
+   $$
    \hat d(i,j)<m;
-   \]
+   $$
 
 2. treats connected components as forest components;
 3. runs Mini Contractor only on edges of the `m`-clustering graph;
@@ -386,9 +377,9 @@ For each theorem-valid \((M,m,\tau)\) point, the program:
 
 For each result, define its resolution as the total number of recovered nontrivial splits. For a forest:
 
-\[
+$$
 R=\sum_{C\in\text{components}} \#\{\text{nontrivial splits in }C\}.
-\]
+$$
 
 A single tree and a forest therefore compete using the same resolution measure.
 
@@ -472,7 +463,7 @@ For the distance-matrix version, the log records that the matrix was user suppli
 
 ---
 
-# Example test data
+## Example test data
 
 Two synthetic additive distance matrices are available for testing the distance-input implementation:
 
