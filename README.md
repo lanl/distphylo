@@ -203,7 +203,7 @@ NJ itself does not require JC69; it operates on the distance matrix it receives.
 
 ### 2. Tau search scale
 
-Let the positive internal branch lengths of the NJ tree be $b_1,\ldots,b_r$. The automatic center is $\tau_0=\frac{\operatorname{median}(b_1,\ldots,b_r)}{4}.$ The initial values are $\tau=\tau_0\,[0.25,0.5,1,1.5,2].$
+Let the positive internal branch lengths of the NJ tree be $b_1,\ldots,b_r$. The automatic center is $\tau_0=\frac{\mathrm{median}(b_1,\ldots,b_r)}{4}.$ The initial values are $\tau=\tau_0\,[0.25,0.5,1,1.5,2].$
 
 If the NJ tree has no positive internal branch, the implementation uses one quarter of the 10th percentile of positive pairwise distances as a fallback scale.
 
