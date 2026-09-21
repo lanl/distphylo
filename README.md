@@ -5,7 +5,9 @@ Reconstruct a complete phylogenetic tree or a forest of disjoint trees from a mu
 
 Reference:
 
-The forest algorithm is based on: Daskalakis, C., Mossel, E. and Roch, S., 2011. Phylogenies without branch bounds: Contracting the short, pruning the deep. SIAM Journal on Discrete Mathematics, 25(2), pp.872-893.
+The forest algorithm is based on:
+
+> Daskalakis, C., Mossel, E. and Roch, S., 2011. Phylogenies without branch bounds: Contracting the short, pruning the deep. SIAM Journal on Discrete Mathematics, 25(2), pp.872-893.
 
 Input: alignment file, true tree (Newick) for comparison, parameters m, M, and $\tau$. Edit main() function to make changes.
 
@@ -27,10 +29,6 @@ This branch repository provides two user-facing implementations of the Prune-Dee
 2. **`prune_deep_forest_distance.py`** — starts from a **precomputed pairwise distance matrix** and therefore does not assume a substitution model inside the program.
 
 Both scripts infer a Neighbor Joining (NJ) tree to obtain scales for the automatic parameter search, run Prune-Deep over theorem-valid \((M,m,\tau)\) combinations, and write the most-resolved split-compatible tree or forest. The user can also provide their own parameter values to avoid NJ based values.
-
-The forest algorithm is based on:
-
-> Daskalakis, C., Mossel, E., and Roch, S. (2011). *Phylogenies without branch bounds: Contracting the short, pruning the deep.* SIAM Journal on Discrete Mathematics, 25(2), 872–893.
 
 ---
 
