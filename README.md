@@ -67,13 +67,7 @@ This option does not estimate distances from sequences and does not assume any s
 
 ### Input
 
-One aligned nucleotide FASTA file with:
-
-- at least 3 sequences;
-- equal sequence lengths;
-- unique sequence IDs.
-
-This implementation calculates JC69 distances.
+One aligned nucleotide FASTA file. This implementation calculates JC69 distances.
 
 ### Basic automatic-grid example
 
@@ -149,17 +143,6 @@ B	0.10	0	0.42	0.51
 C	0.40	0.42	0	0.12
 D	0.50	0.51	0.12	0
 ```
-
-The program checks that the matrix:
-
-- contains at least 3 taxa;
-- is square;
-- has matching row and column labels;
-- has unique, nonempty labels;
-- contains only finite numeric values;
-- has no negative distances;
-- has a zero diagonal;
-- is symmetric within numerical tolerance.
 
 ### Basic automatic-grid example
 
@@ -243,19 +226,7 @@ This uses the same max-min chord-depth construction as the simulation benchmark,
 
 ### 4. M values
 
-For every $(m,\tau)$, define the theorem boundary
-
-$$
-M_{\text{base}}=2m+3\tau.
-$$
-
-The automatic candidates are
-
-$$
-M=M_{\text{base}}[1.05,\;1.25,\;1.50].
-$$
-
-All proposed triples are still checked against the full strict theorem conditions below.
+For every $(m,\tau)$, define the theorem boundary $M_{\text{base}}=2m+3\tau$. The automatic candidates are $M=M_{\text{base}}[1.05,\;1.25,\;1.50]$. All proposed triples are still checked against the full strict theorem conditions below.
 
 ---
 
@@ -280,7 +251,7 @@ Therefore a custom parameter combination can be supplied on the command line but
 
 ## Adaptive lower-tau refinement
 
-Adaptive tau refinement is used only with the automatic grid.
+Adaptive tau refinement is used only with the automatic grid. 
 
 After the initial grid is evaluated:
 
@@ -310,12 +281,7 @@ Custom-grid runs do not automatically add smaller tau values.
 
 For each theorem-valid $(M,m,\tau)$ point, the program:
 
-1. constructs the `m`-clustering graph using an edge when
-
-   $$
-   \hat d(i,j)<m;
-   $$
-
+1. constructs the `m`-clustering graph using an edge when $\hat d(i,j)<m;$
 2. treats connected components as forest components;
 3. runs Mini Contractor only on edges of the `m`-clustering graph;
 4. extends candidate local bipartitions by graph connectivity;
@@ -353,7 +319,7 @@ main_M{M}m{m}tau{tau}.nwk
 
 If the result is a forest, the file contains one Newick record per component.
 
-You can override the primary filename with:
+User can override the primary filename with:
 
 ```bash
 --output my_result.nwk
