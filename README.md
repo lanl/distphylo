@@ -21,7 +21,7 @@ python forest_algorithm.py --n 128 --k 500
 ```
 Output: grid_summary_ntips128_1_k500_sorted.tsv and grid_summary_ntips128_2_k500_sorted.tsv files.
 
-## GETFOREST Branch
+# getforest branch
 
 This branch repository provides two user-facing implementations of the phylogenetic forest reconstruction workflow:
 
@@ -41,9 +41,6 @@ Required Python packages:
 ```bash
 pip install numpy networkx biopython
 ```
-
-No R scripts are required.
-
 ---
 
 ### Option 1: aligned FASTA input
@@ -91,7 +88,7 @@ This version does **not** estimate distances from sequences and does **not** ass
 
 ## 1. Alignment-input version: `prune_deep_forest.py`
 
-## Input
+### Input
 
 One aligned nucleotide FASTA file with:
 
@@ -99,10 +96,9 @@ One aligned nucleotide FASTA file with:
 - equal sequence lengths;
 - unique sequence IDs.
 
-The current implementation calculates JC69 distances.
-**Current implementation note:** every unequal aligned character contributes to the mismatch count. Gaps and ambiguous nucleotide symbols are not currently pairwise-deleted or handled with a separate missing-data rule.
+This implementation calculates JC69 distances.
 
-## Basic automatic-grid example
+### Basic automatic-grid example
 
 ```bash
 python prune_deep_forest.py alignments/aln_20tips_k100.fa \
@@ -111,7 +107,7 @@ python prune_deep_forest.py alignments/aln_20tips_k100.fa \
 
 The program calculates JC69 distances, infers an NJ tree, builds the automatic parameter grid, runs Prune-Deep, and selects the most-resolved split-compatible result.
 
-## Limit tau refinement
+### Limit tau refinement
 
 The default maximum is 3 lower-tau refinement rounds. To allow only one:
 
@@ -129,7 +125,7 @@ python prune_deep_forest.py alignments/aln_20tips_k100.fa \
     --tau-refine-rounds 0
 ```
 
-## Custom parameter grid
+### Custom parameter grid
 
 All three options `--M`, `--m`, and `--tau` must be supplied together.
 
@@ -159,7 +155,7 @@ The Cartesian product of the supplied values is formed, but only combinations sa
 
 ## 2. Distance-matrix version: `prune_deep_forest_distance.py`
 
-## Input
+### Input
 
 One full, labeled, symmetric pairwise distance matrix in:
 
@@ -188,7 +184,7 @@ The program checks that the matrix:
 - has a zero diagonal;
 - is symmetric within numerical tolerance.
 
-## Basic automatic-grid example
+### Basic automatic-grid example
 
 ```bash
 python prune_deep_forest_distance.py distance_matrix_8tips.tsv \
@@ -202,7 +198,7 @@ python prune_deep_forest_distance.py distance_matrix_20tips.tsv \
     --outdir prune_deep_output_distance_20tips
 ```
 
-## Limit tau refinement
+## Limit tau parameter refinement
 
 ```bash
 python prune_deep_forest_distance.py distance_matrix_20tips.tsv \
@@ -236,7 +232,7 @@ As in the alignment-input version, combinations that do not satisfy the strict t
 
 The automatic search is the same in both scripts after a pairwise distance matrix has been obtained.
 
-## 1. Neighbor Joining tree
+### 1. Neighbor Joining tree
 
 NJ is inferred from the supplied/estimated pairwise distance matrix.
 
@@ -245,7 +241,7 @@ NJ is inferred from the supplied/estimated pairwise distance matrix.
 
 NJ itself does not require JC69; it operates on the distance matrix it receives.
 
-## 2. Tau search scale
+### 2. Tau search scale
 
 Let the positive internal branch lengths of the NJ tree be
 
@@ -269,7 +265,7 @@ If the NJ tree has no positive internal branch, the implementation uses one quar
 
 **Important:** this is an automatic-search heuristic. The theorem treats $\tau$ as a distance-distortion/error parameter; the NJ-based formula above is not itself a theorem-derived estimator of that error bound.
 
-## 3. NJ chord-depth proxy and m
+### 3. NJ chord-depth proxy and m
 
 For every unique nontrivial split $A_e \mid B_e$ induced by an NJ internal edge, calculate
 
@@ -291,7 +287,7 @@ $$
 
 This uses the same max-min chord-depth construction as the simulation benchmark, but replaces the unavailable true tree and true tree metric with the NJ topology and the observed/supplied distance matrix.
 
-## 4. M values
+### 4. M values
 
 For every $(m,\tau)$, define the theorem boundary
 
@@ -375,13 +371,7 @@ For each theorem-valid $(M,m,\tau)$ point, the program:
 8. checks that all retained splits within a component are mutually compatible;
 9. reconstructs a possibly unresolved Newick topology from the compatible split set.
 
-For each result, define its resolution as the total number of recovered nontrivial splits. For a forest:
-
-$$
-R=\sum_{C\in\text{components}} \#\{\text{nontrivial splits in }C\}.
-$$
-
-A single tree and a forest therefore compete using the same resolution measure.
+For each result, define its resolution as the total number of recovered nontrivial splits. For a forest it is the sum of nontrivial splits. A single tree and a forest therefore compete using the same resolution measure.
 
 The primary result is selected by:
 
@@ -393,11 +383,11 @@ All evaluated candidates already satisfy the theorem parameter filter.
 
 ---
 
-# Output files
+## Output files
 
 Each run writes a grid-search log and at least one Newick file.
 
-## Primary result
+### Primary result
 
 The primary result is the globally most-resolved split-compatible candidate found by the search.
 
@@ -415,7 +405,7 @@ You can override the primary filename with:
 --output my_result.nwk
 ```
 
-## Secondary forest
+### Secondary forest
 
 If the primary result is a single tree and at least one compatible multi-component forest exists, the program also writes the most-resolved such forest:
 
@@ -425,7 +415,7 @@ forest_less_preferred_M{M}m{m}tau{tau}.nwk
 
 If the primary result is already a forest, no secondary forest file is written.
 
-## Grid-search log
+### Grid-search log
 
 Default:
 
